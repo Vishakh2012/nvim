@@ -1,5 +1,4 @@
 local lsp_zero = require('lsp-zero')
-
 lsp_zero.on_attach(function(client, bufnr)
   local opts = {buffer = bufnr, remap = false}
 
@@ -39,9 +38,9 @@ require('luasnip.loaders.from_vscode').lazy_load()
 cmp.setup({
   sources = {
     {name = 'path'},
+    {name = 'luasnip'},
     {name = 'nvim_lsp'},
     {name = 'nvim_lua'},
-    {name = 'luasnip', keyword_length = 2},
     {name = 'buffer', keyword_length = 3},
   },
   formatting = lsp_zero.cmp_format({details = false}),

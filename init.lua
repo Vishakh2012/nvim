@@ -1,3 +1,4 @@
 require("vishakh.remap")
 require("vishakh.set")
-print("hello")
+require("vishakh.snippet")
+require("vishakh.folding")

@@ -14,7 +14,7 @@ use('mbbill/undotree')
 use('tpope/vim-fugitive')
 
 use{
-	'VonHeikemen/lsp-zero.nvim', 
+	'VonHeikemen/lsp-zero.nvim',
 	branch = 'v3.x',
 }
 use('williamboman/mason.nvim')
@@ -22,7 +22,10 @@ use('williamboman/mason-lspconfig.nvim')
 use('neovim/nvim-lspconfig')
 use('hrsh7th/cmp-nvim-lsp')
 use('hrsh7th/nvim-cmp')
-use('L3MON4D3/LuaSnip')
+use({
+	"L3MON4D3/LuaSnip"
+})
+use { 'saadparwaiz1/cmp_luasnip' }
 use({
     "kylechui/nvim-surround",
     tag = "*", -- Use for stability; omit to use `main` branch for the latest features
@@ -32,6 +35,15 @@ use({
         })
     end
 })
+use {
+	'xeluxee/competitest.nvim',
+	requires = 'MunifTanjim/nui.nvim',
+	config = function() require('competitest').setup() end
+}
+use {
+    'uloco/bluloco.nvim',
+    requires = { 'rktjmp/lush.nvim' }
+}
 end)
 
 
