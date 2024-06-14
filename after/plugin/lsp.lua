@@ -13,9 +13,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
         vim.keymap.set('n', '<leader>vrr', function() vim.lsp.buf.references() end, opts)
         vim.keymap.set('n', '<leader>vrn', function() vim.lsp.buf.rename() end, opts)
         vim.keymap.set('i', '<C-h>', function() vim.lsp.buf.signature_help() end, opts)
-        vim.keymap.set("i", '<C-i>', function() vim.lsp.inlay_hint.enable(0, not vim.lsp.inlay_hint.is_enabled(0)) end,
-            opts)
-        vim.keymap.set("n", '<C-i>', function() vim.lsp.inlay_hint.enable(0, not vim.lsp.inlay_hint.is_enabled(0)) end,
+        vim.keymap.set("n", '<leader>i', function() vim.lsp.inlay_hint.enable(0, not vim.lsp.inlay_hint.is_enabled(0)) end,
             opts)
     end,
 })
@@ -25,7 +23,7 @@ local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 require('mason').setup({})
 require('mason-lspconfig').setup({
-    ensure_installed = { 'tsserver', 'rust_analyzer' },
+    ensure_installed = { 'tsserver', 'clangd', },
     handlers = {
         function(server_name)
             require('lspconfig')[server_name].setup({
@@ -87,6 +85,15 @@ require('mason-lspconfig').setup({
                     },
                 }
             })
+        end,
+        rust_analyzer = function()
+        end,
+        clangd = function()
+            require('lspconfig').clangd.setup({
+
+                capabilities = lsp_capabilities,
+
+            })
         end
     }
 })
@@ -97,7 +104,13 @@ local cmp_select = { behavior = cmp.SelectBehavior.Select }
 -- this is the function that loads the extra snippets to luasnip
 -- from rafamadriz/friendly-snippets
 require('luasnip.loaders.from_vscode').lazy_load()
-
+Lspkind = require('lspkind')
+Lspkind.init({
+    symbol_map = {
+        Copilot = "",
+    },
+})
+vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
 cmp.setup({
     sources = {
         { name = 'path' },
@@ -105,11 +118,21 @@ cmp.setup({
         { name = 'luasnip', keyword_length = 2 },
         { name = 'buffer',  keyword_length = 3 },
     },
+
     mapping = cmp.mapping.preset.insert({
         ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
         ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-        ['<C-y>'] = cmp.mapping.confirm({ select = true }),
-        ['<C-Space>'] = cmp.mapping.complete(),
+        ['<S-Tab>'] = cmp.mapping.confirm({ select = true }),
+        ["<C-h>"] = cmp.mapping({
+            i = function()
+                if cmp.visible() then
+                    cmp.close()
+                else
+                    cmp.complete()
+                end
+            end,
+        })
+
     }),
     snippet = {
         expand = function(args)

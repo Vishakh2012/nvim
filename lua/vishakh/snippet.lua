@@ -4,6 +4,7 @@ local t = ls.text_node
 local i = ls.insert_node
 local extras = require("luasnip.extras")
 local rep = extras.rep
+local fmt = require("luasnip.extras.fmt").fmt
 
 vim.keymap.set({ "i", "s" }, "<C-k>", function()
     if ls.expand_or_jumpable() then
@@ -52,4 +53,43 @@ ls.add_snippets("typescriptreact", {
         t('return()})export default '),
         rep(1)
     })
+})
+
+ls.add_snippets("cpp", {
+    s("fr", fmt(
+        [[
+    for({}; {}; {}){{
+        {}
+    }}
+    ]], {
+            i(1), i(2), i(3), i(4)
+        })),
+    s("compmt", fmt(
+        [[
+    #include <bits/stdc++.h>
+    using namespace std;
+
+    int main(){{
+        int t;
+        cin >> t;
+
+        while(t--){{
+            {}
+        }}
+    }}
+        ]], { i(1)
+        })),
+    s("comp", fmt(
+        [[
+    #include <bits/stdc++.h>
+    using namespace std;
+
+    int main(){{
+        {}
+    }}
+        ]], { i(1)
+        })),
+
+
+
 })
