@@ -122,7 +122,11 @@ cmp.setup({
     mapping = cmp.mapping.preset.insert({
         ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
         ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-        ['<S-Tab>'] = cmp.mapping.confirm({ select = true }),
+        ['<S-Tab>'] = cmp.mapping.confirm({
+            behavior = cmp.ConfirmBehavior.Replace,
+            select = true
+        }),
+
         ["<C-h>"] = cmp.mapping({
             i = function()
                 if cmp.visible() then
