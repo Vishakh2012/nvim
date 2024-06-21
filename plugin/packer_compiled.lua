@@ -49,8 +49,8 @@ local function save_profiles(threshold)
 end
 
 time([[Luarocks path setup]], true)
-local package_path_str = "/home/vishforit/.cache/nvim/packer_hererocks/2.1.1710088188/share/lua/5.1/?.lua;/home/vishforit/.cache/nvim/packer_hererocks/2.1.1710088188/share/lua/5.1/?/init.lua;/home/vishforit/.cache/nvim/packer_hererocks/2.1.1710088188/lib/luarocks/rocks-5.1/?.lua;/home/vishforit/.cache/nvim/packer_hererocks/2.1.1710088188/lib/luarocks/rocks-5.1/?/init.lua"
-local install_cpath_pattern = "/home/vishforit/.cache/nvim/packer_hererocks/2.1.1710088188/lib/lua/5.1/?.so"
+local package_path_str = "/home/vishforit/.cache/nvim/packer_hererocks/2.1.1713484068/share/lua/5.1/?.lua;/home/vishforit/.cache/nvim/packer_hererocks/2.1.1713484068/share/lua/5.1/?/init.lua;/home/vishforit/.cache/nvim/packer_hererocks/2.1.1713484068/lib/luarocks/rocks-5.1/?.lua;/home/vishforit/.cache/nvim/packer_hererocks/2.1.1713484068/lib/luarocks/rocks-5.1/?/init.lua"
+local install_cpath_pattern = "/home/vishforit/.cache/nvim/packer_hererocks/2.1.1713484068/lib/lua/5.1/?.so"
 if not string.find(package.path, package_path_str, 1, true) then
   package.path = package.path .. ';' .. package_path_str
 end
@@ -162,7 +162,7 @@ _G.packer_plugins = {
     url = "https://github.com/nvim-lua/plenary.nvim"
   },
   rustaceanvim = {
-    config = { "\27LJ\2\n\v\0\0\1\0\0\0\1K\0\1\0ã\2\1\0\a\0\18\0\0216\0\0\0009\0\1\0005\1\3\0004\2\0\0=\2\4\0015\2\6\0003\3\5\0=\3\a\0025\3\r\0005\4\v\0005\5\t\0005\6\b\0=\6\n\5=\5\f\4=\4\14\3=\3\15\2=\2\16\0014\2\0\0=\2\17\1=\1\2\0K\0\1\0\bdap\vserver\21default_settings\18rust-analyzer\1\0\1\18rust-analyzer\0\15inlayHints\1\0\1\15inlayHints\0\25lifetimeElisionHints\1\0\1\25lifetimeElisionHints\0\1\0\2\venable\16SkipTrivial\22useParameterNames\2\14on_attach\1\0\2\14on_attach\0\21default_settings\0\0\ntools\1\0\3\bdap\0\ntools\0\vserver\0\17rustaceanvim\6g\bvim\0" },
+    config = { "\27LJ\2\n\v\0\0\1\0\0\0\1K\0\1\0ã\2\1\0\a\0\18\0\0216\0\0\0009\0\1\0005\1\3\0004\2\0\0=\2\4\0015\2\6\0003\3\5\0=\3\a\0025\3\r\0005\4\v\0005\5\t\0005\6\b\0=\6\n\5=\5\f\4=\4\14\3=\3\15\2=\2\16\0014\2\0\0=\2\17\1=\1\2\0K\0\1\0\bdap\vserver\21default_settings\18rust-analyzer\1\0\1\18rust-analyzer\0\15inlayHints\1\0\1\15inlayHints\0\25lifetimeElisionHints\1\0\1\25lifetimeElisionHints\0\1\0\2\venable\16SkipTrivial\22useParameterNames\2\14on_attach\1\0\2\14on_attach\0\21default_settings\0\0\ntools\1\0\3\bdap\0\vserver\0\ntools\0\17rustaceanvim\6g\bvim\0" },
     loaded = true,
     path = "/home/vishforit/.local/share/nvim/site/pack/packer/start/rustaceanvim",
     url = "https://github.com/mrcjkb/rustaceanvim"
@@ -185,14 +185,14 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: rustaceanvim
-time([[Config for rustaceanvim]], true)
-try_loadstring("\27LJ\2\n\v\0\0\1\0\0\0\1K\0\1\0ã\2\1\0\a\0\18\0\0216\0\0\0009\0\1\0005\1\3\0004\2\0\0=\2\4\0015\2\6\0003\3\5\0=\3\a\0025\3\r\0005\4\v\0005\5\t\0005\6\b\0=\6\n\5=\5\f\4=\4\14\3=\3\15\2=\2\16\0014\2\0\0=\2\17\1=\1\2\0K\0\1\0\bdap\vserver\21default_settings\18rust-analyzer\1\0\1\18rust-analyzer\0\15inlayHints\1\0\1\15inlayHints\0\25lifetimeElisionHints\1\0\1\25lifetimeElisionHints\0\1\0\2\venable\16SkipTrivial\22useParameterNames\2\14on_attach\1\0\2\14on_attach\0\21default_settings\0\0\ntools\1\0\3\bdap\0\ntools\0\vserver\0\17rustaceanvim\6g\bvim\0", "config", "rustaceanvim")
-time([[Config for rustaceanvim]], false)
 -- Config for: competitest.nvim
 time([[Config for competitest.nvim]], true)
 try_loadstring("\27LJ\2\n9\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\16competitest\frequire\0", "config", "competitest.nvim")
 time([[Config for competitest.nvim]], false)
+-- Config for: rustaceanvim
+time([[Config for rustaceanvim]], true)
+try_loadstring("\27LJ\2\n\v\0\0\1\0\0\0\1K\0\1\0ã\2\1\0\a\0\18\0\0216\0\0\0009\0\1\0005\1\3\0004\2\0\0=\2\4\0015\2\6\0003\3\5\0=\3\a\0025\3\r\0005\4\v\0005\5\t\0005\6\b\0=\6\n\5=\5\f\4=\4\14\3=\3\15\2=\2\16\0014\2\0\0=\2\17\1=\1\2\0K\0\1\0\bdap\vserver\21default_settings\18rust-analyzer\1\0\1\18rust-analyzer\0\15inlayHints\1\0\1\15inlayHints\0\25lifetimeElisionHints\1\0\1\25lifetimeElisionHints\0\1\0\2\venable\16SkipTrivial\22useParameterNames\2\14on_attach\1\0\2\14on_attach\0\21default_settings\0\0\ntools\1\0\3\bdap\0\vserver\0\ntools\0\17rustaceanvim\6g\bvim\0", "config", "rustaceanvim")
+time([[Config for rustaceanvim]], false)
 -- Config for: nvim-surround
 time([[Config for nvim-surround]], true)
 try_loadstring("\27LJ\2\n?\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\18nvim-surround\frequire\0", "config", "nvim-surround")

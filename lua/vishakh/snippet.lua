@@ -2,6 +2,7 @@ local ls = require "luasnip"
 local s = ls.snippet
 local t = ls.text_node
 local i = ls.insert_node
+local f = ls.function_node
 local extras = require("luasnip.extras")
 local rep = extras.rep
 local fmt = require("luasnip.extras.fmt").fmt
@@ -20,19 +21,22 @@ end, { silent = true })
 
 ls.add_snippets("typescriptreact", {
     -- react use state
-    s("rus", {
-        t('const [ '),
-        i(1),
-        t('  , set'),
-        i(2),
-        t(''),
-        rep(1),
-        t(' ] = useState<'),
-        i(3),
-        t('>('),
-        i(4),
-        t(')')
-    }),
+
+    s("rus", fmt(
+        [[
+        {}const [{}, set{}] = useState({})
+    ]], {
+            f(function()
+                --check if the file has a usestate import
+                if not vim.api.nvim_buf_get_lines(0, 0, 1, true)[1]:find("useState") then
+                    vim.api.nvim_buf_set_lines(0, 0, 0, true, { "import React, { useState } from 'react'" })
+                    return {}
+                end
+            end, {}),
+            i(1), i(2), i(3)
+        })
+    ),
+
     -- react use effect
     s("ruf", {
         t('useEffect(() => {'),
