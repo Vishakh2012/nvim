@@ -7,4 +7,4 @@ require("bluloco").setup({
 })
 
 vim.opt.termguicolors = true
-vim.cmd('colorscheme torte')
+vim.cmd('colorscheme slate')
