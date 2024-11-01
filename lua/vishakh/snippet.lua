@@ -93,6 +93,16 @@ ls.add_snippets("cpp", {
     }}
         ]], { i(1)
         })),
+    s("gia", fmt(
+        [[
+        vector<int> arr({});
+        for(int i = 0; i < {}; i++){{
+            int x;
+            cin >> x;
+            {}
+        }}
+        ]], { i(1),rep(1), i(2)
+        })),
 
 
 

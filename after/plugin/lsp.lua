@@ -13,7 +13,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
         vim.keymap.set('n', '<leader>vrr', function() vim.lsp.buf.references() end, opts)
         vim.keymap.set('n', '<leader>vrn', function() vim.lsp.buf.rename() end, opts)
         vim.keymap.set('i', '<C-h>', function() vim.lsp.buf.signature_help() end, opts)
-        vim.keymap.set("n", '<leader>i', function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({0}),{0}) end,
+        vim.keymap.set("n", '<leader>i',
+            function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ 0 }), { 0 }) end,
             opts)
     end,
 })
@@ -92,6 +93,8 @@ require('mason-lspconfig').setup({
             require('lspconfig').clangd.setup({
 
                 capabilities = lsp_capabilities,
+                cmd = { "clangd", "--completion-style=detailed" }
+
 
             })
         end
@@ -111,12 +114,19 @@ Lspkind.init({
     },
 })
 vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
+vim.api.nvim_set_hl(0, "MN", { bg = "#000000", fg = "#aaafff" })
+vim.api.nvim_set_hl(0, "MFB", { bg = "#000000", fg = "#988829" })
+vim.api.nvim_set_hl(0, "MCL", { bg = "#fdff00", fg = "#000000", bold = true })
+
+vim.api.nvim_set_hl(0, "CmpItemAbbr", { fg = "#aaafff", bg = "NONE" })
+vim.api.nvim_set_hl(0, "CmpItemAbbrMatch", { fg = "#fdff00", bg = "NONE" })
+vim.api.nvim_set_hl(0, "CmpItemAbbrMatchFuzzy", { fg = "#ec5300", bg = "NONE", bold = true })
 cmp.setup({
     sources = {
-        { name = 'path' },
-        { name = 'nvim_lsp' },
-        { name = 'luasnip', keyword_length = 2 },
-        { name = 'buffer',  keyword_length = 3 },
+        { name = 'path',     keyword_length = 2 },
+        { name = 'nvim_lsp', keyword_length = 2 },
+        { name = 'luasnip',  keyword_length = 2 },
+        { name = 'buffer',   keyword_length = 3 },
     },
 
     mapping = cmp.mapping.preset.insert({
@@ -143,4 +153,10 @@ cmp.setup({
             require('luasnip').lsp_expand(args.body)
         end,
     },
+    window = {
+        completion = cmp.config.window.bordered({
+            winhighlight = "Normal:MN,FloatBorder:MFB,CursorLine:MCL,Search:None",
+        })
+    }
+
 })
