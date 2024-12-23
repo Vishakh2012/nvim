@@ -24,4 +24,5 @@ vim.opt.scrolloff = 8
 vim.opt.isfname:append("@-@")
 vim.o.statuscolumn = "%s %l %r"
 vim.opt.updatetime = 50
-
+vim.o.smartcase = true
+vim.o.ignorecase = true

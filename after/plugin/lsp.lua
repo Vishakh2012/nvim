@@ -1,7 +1,27 @@
+local lsp_border = {
+    { "╭", "FloatBorder" },
+    { "─", "FloatBorder" },
+    { "╮", "FloatBorder" },
+    { "│", "FloatBorder" },
+    { "╯", "FloatBorder" },
+    { "─", "FloatBorder" },
+    { "╰", "FloatBorder" },
+    { "│", "FloatBorder" },
+}
+
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = lsp_border })
+vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = lsp_border })
+
+vim.diagnostic.config({
+    float = {
+        border = "rounded",
+    }
+})
+
 vim.api.nvim_create_autocmd('LspAttach', {
     group = vim.api.nvim_create_augroup('user_lsp_attach', { clear = true }),
     callback = function(event)
-        local opts = { buffer = event.buf }
+        local opts = { buffer = event.buf,}
 
         vim.keymap.set('n', 'gd', function() vim.lsp.buf.definition() end, opts)
         vim.keymap.set('n', 'K', function() vim.lsp.buf.hover() end, opts)
@@ -24,7 +44,7 @@ local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 require('mason').setup({})
 require('mason-lspconfig').setup({
-    ensure_installed = { 'tsserver', 'clangd', },
+    ensure_installed = { 'ts_ls', 'clangd', },
     handlers = {
         function(server_name)
             require('lspconfig')[server_name].setup({
@@ -56,8 +76,8 @@ require('mason-lspconfig').setup({
                 }
             })
         end,
-        tsserver = function()
-            require('lspconfig').tsserver.setup({
+        ts_ls = function()
+            require('lspconfig').ts_ls.setup({
                 capabilities = lsp_capabilities,
                 settings = {
 
@@ -88,6 +108,9 @@ require('mason-lspconfig').setup({
             })
         end,
         rust_analyzer = function()
+            require('lspconfig').rust_analyzer.setup({
+                capabilities = lsp_capabilities,
+            })
         end,
         clangd = function()
             require('lspconfig').clangd.setup({
@@ -121,6 +144,12 @@ vim.api.nvim_set_hl(0, "MCL", { bg = "#fdff00", fg = "#000000", bold = true })
 vim.api.nvim_set_hl(0, "CmpItemAbbr", { fg = "#aaafff", bg = "NONE" })
 vim.api.nvim_set_hl(0, "CmpItemAbbrMatch", { fg = "#fdff00", bg = "NONE" })
 vim.api.nvim_set_hl(0, "CmpItemAbbrMatchFuzzy", { fg = "#ec5300", bg = "NONE", bold = true })
+
+vim.api.nvim_set_hl(0, "NormalFLoat" , {bg = "NONE", fg = "#aaafff"})
+vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#abcfff" })
+
+
+
 cmp.setup({
     sources = {
         { name = 'path',     keyword_length = 2 },
@@ -155,6 +184,7 @@ cmp.setup({
     },
     window = {
         completion = cmp.config.window.bordered({
+            border = "single",
             winhighlight = "Normal:MN,FloatBorder:MFB,CursorLine:MCL,Search:None",
         })
     }

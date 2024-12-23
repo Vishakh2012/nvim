@@ -3,6 +3,7 @@ vim.cmd [[packadd packer.nvim]]
 return require('packer').startup(function(use)
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
+
     use {
         'nvim-telescope/telescope.nvim', tag = '0.1.6',
         -- or                            , branch = '0.1.x',
@@ -39,30 +40,10 @@ return require('packer').startup(function(use)
         'uloco/bluloco.nvim',
         requires = { 'rktjmp/lush.nvim' }
     }
-    use { 'mrcjkb/rustaceanvim',
-        config = {
-            function()
-                vim.g.rustaceanvim = {
-                    tools = {},
-                    server = {
-                        on_attach = function()
-                        end,
-                        default_settings = {
-                            ['rust-analyzer'] = {
-                                inlayHints = {
-                                    lifetimeElisionHints = {
-                                        enable = "SkipTrivial",
-                                        useParameterNames = true
-                                    }
-                                }
-                            },
-                        },
-                    },
-                    dap = {},
-                }
-            end
-        }
-    }
-    use {'github/copilot.vim', branch = 'release' }
+    use { 'github/copilot.vim', branch = 'release' }
     use { "onsails/lspkind.nvim" }
+    use 'mfussenegger/nvim-dap'
+    use { "nvim-neotest/nvim-nio" }
+    use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" } }
+
 end)
