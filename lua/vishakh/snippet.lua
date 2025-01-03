@@ -103,6 +103,15 @@ ls.add_snippets("cpp", {
         }}
         ]], { i(1),rep(1), i(2)
         })),
+    s("2for", fmt(
+        [[
+        for(int i = 0; i < {}; i++){{
+            for(int j = 0; j < {}; j++){{
+                {}
+            }}
+        }}
+        ]], { i(1), i(2), i(3)
+        })),
 
 
 

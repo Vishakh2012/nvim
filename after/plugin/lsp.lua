@@ -116,13 +116,36 @@ require('mason-lspconfig').setup({
             require('lspconfig').clangd.setup({
 
                 capabilities = lsp_capabilities,
-                cmd = { "clangd", "--completion-style=detailed" }
+                cmd = { "clangd", "--completion-style=detailed", }
 
 
             })
         end
     }
 })
+local util = require('lspconfig.util')
+
+require'lspconfig'.mlir_lsp_server.setup{
+    cmd = {"/home/vishforit/llvm-project/build/bin/mlir-lsp-server"},
+    root_dir = function(fname)
+      return vim.fs.dirname(vim.fs.find('.git', { path = fname, upward = true })[1])
+    end,
+}
+require'lspconfig'.mlir_pdll_lsp_server.setup{
+    cmd = {"/home/vishforit/llvm-project/build/bin/mlir-pdll-lsp-server"},
+    root_dir = function(fname)
+      return vim.fs.dirname(vim.fs.find('.git', { path = fname, upward = true })[1])
+    end,
+}
+require'lspconfig'.tblgen_lsp_server.setup{
+    cmd = {"/home/vishforit/llvm-project/build/bin/tblgen-lsp-server","--tablegen-compilation-database=/home/vishforit/llvm-project/build/tablegen_compile_commands.yml"},
+    capabilities = lsp_capabilities,
+    filetypes = {"tablegen"},
+    root_dir = function(fname)
+      return vim.fs.dirname(vim.fs.find('CMakeLists.txt', { path = fname, upward = true })[1])
+    end,
+
+}
 
 local cmp = require('cmp')
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
@@ -161,7 +184,7 @@ cmp.setup({
     mapping = cmp.mapping.preset.insert({
         ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
         ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-        ['<S-Tab>'] = cmp.mapping.confirm({
+        ['<Tab>'] = cmp.mapping.confirm({
             behavior = cmp.ConfirmBehavior.Replace,
             select = true
         }),
