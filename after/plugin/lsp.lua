@@ -116,7 +116,7 @@ require('mason-lspconfig').setup({
             require('lspconfig').clangd.setup({
 
                 capabilities = lsp_capabilities,
-                cmd = { "clangd", "--completion-style=detailed", }
+                cmd = { "clangd", "--completion-style=detailed",}
 
 
             })
@@ -126,10 +126,12 @@ require('mason-lspconfig').setup({
 local util = require('lspconfig.util')
 
 require'lspconfig'.mlir_lsp_server.setup{
-    cmd = {"/home/vishforit/llvm-project/build/bin/mlir-lsp-server"},
+    cmd = {"/home/vishforit/Desktop/mllearn/build/bin/lsp-server"},
+    filetypes = { "mlir" },
     root_dir = function(fname)
       return vim.fs.dirname(vim.fs.find('.git', { path = fname, upward = true })[1])
     end,
+    single_file_support = true,
 }
 require'lspconfig'.mlir_pdll_lsp_server.setup{
     cmd = {"/home/vishforit/llvm-project/build/bin/mlir-pdll-lsp-server"},
