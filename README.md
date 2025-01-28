@@ -8,6 +8,7 @@ Nvim configuration files
 -  rename neovimConfiguration to nvim
 -  `cd nvim`
 -  `nvim .`
+-  `sudo apt install ripgrep` for proper functioning of telescope
 -  then go to lua/vishakh and open packer.lua
 -  hit `:PackerSync` to download all the extensions
 -  also open each file and hit `:so`
