@@ -40,7 +40,7 @@ return require('packer').startup(function(use)
         'uloco/bluloco.nvim',
         requires = { 'rktjmp/lush.nvim' }
     }
-    use { 'github/copilot.vim', branch = 'release' }
+--    use { 'github/copilot.vim', branch = 'release' }
     use { "onsails/lspkind.nvim" }
     use 'mfussenegger/nvim-dap'
     use { "nvim-neotest/nvim-nio" }

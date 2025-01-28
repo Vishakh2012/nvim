@@ -100,11 +100,6 @@ _G.packer_plugins = {
     path = "/home/vishforit/.local/share/nvim/site/pack/packer/start/competitest.nvim",
     url = "https://github.com/xeluxee/competitest.nvim"
   },
-  ["copilot.vim"] = {
-    loaded = true,
-    path = "/home/vishforit/.local/share/nvim/site/pack/packer/start/copilot.vim",
-    url = "https://github.com/github/copilot.vim"
-  },
   ["lspkind.nvim"] = {
     loaded = true,
     path = "/home/vishforit/.local/share/nvim/site/pack/packer/start/lspkind.nvim",
